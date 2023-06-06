@@ -42,7 +42,7 @@ const list = () => {
     const listItem = `
       <li>
         <div class="to-do-item">
-          <input class="check" type="checkbox" id="demoCheckbox" name="checkbox" value="1">
+          <input class="check" id="check${item.index}" type="checkbox" name="checkbox${item.index}" value="1">
           <p>${item.description}</p>
         </div>
         <i class='bx bx-dots-vertical-rounded to-do-more'> </i>
