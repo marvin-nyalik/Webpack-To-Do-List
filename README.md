@@ -67,7 +67,10 @@ To get a local copy up and running, follow these steps.
    **git clone git@github.com:marvin-nyalik/Webpack-To-do-list.git**
 
 2. Open the project in a text editor
-3. Serve using a local development server e.g **liveserver** or **apache** 
+3. Open a terminal via CMD or in your code editor
+4. Run `npm install` - To install all dependencies of the project.
+5. Run `npm start` to serve and open the project on a development server.
+
 
 ### Prerequisites
 
@@ -78,6 +81,8 @@ In order to run this project you need:
 
 2. Clone this repository
 > Run this command '**git clone git@github.com:marvin-nyalik/webpack-to-do-list.git**'
+
+3. Follow the steps in `Getting Started` above.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -95,7 +100,7 @@ In order to run this project you need:
 
 - [ ] **Implement add elements**
 - [ ] **Implement remove elements**
-- [ ] **Implement local storage**
+- [ ] **Implement local storage of list items**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
