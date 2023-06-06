@@ -1,3 +1,115 @@
-.hello {
-  color: red;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+  font-family: poppins, Arial, Helvetica, sans-serif;
+}
+
+.heading {
+  text-align: center;
+}
+
+.to-do-container {
+  display: flex;
+  width: 50%;
+  max-height: 70vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 2rem auto;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px 1rem;
+  height: 10%;
+  border-bottom: 1px solid lightgrey;
+}
+
+.headline p {
+  font-weight: 500;
+}
+
+.headline i {
+  color: grey;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.add {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 1rem;
+  height: 10%;
+  padding: 0.5rem;
+  border-bottom: 1px solid lightgrey;
+}
+
+.add input {
+  border: none;
+  width: 80%;
+  outline: none;
+}
+
+.add input::placeholder {
+  font-style: italic;
+}
+
+.add i {
+  font-size: 24px;
+  color: grey;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  margin: 2px 1rem;
+  padding: 0;
+}
+
+.nav-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+  border-bottom: 1px solid lightgrey;
+}
+
+.nav-list .to-do-item {
+  display: flex;
+}
+
+.to-do-item input {
+  margin-right: 8px;
+}
+
+.to-do-item p {
+  font-size: 15px;
+}
+
+.to-do-item i {
+  cursor: pointer;
+}
+
+.nav-list li i {
+  font-size: 24px;
+  color: grey;
+  cursor: pointer;
+}
+
+.to-do-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.to-do-footer p {
+  color: grey;
 }
