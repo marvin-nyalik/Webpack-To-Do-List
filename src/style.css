@@ -2,6 +2,10 @@
 * {
   font-family: poppins;
 }
+.heading {
+  text-align: center;
+}
+
 .to-do-container {
   display: flex;
   width: 50%;
@@ -85,6 +89,10 @@
   font-size: 15px;
 }
 
+.to-do-item i {
+  cursor: pointer;
+}
+
 .nav-list li i {
   font-size: 24px;
   color: grey;
@@ -98,4 +106,8 @@
   background-color: lightgray;
   cursor: pointer;
   font-size: 15px;
+}
+
+.to-do-footer p {
+  color: grey;
 }

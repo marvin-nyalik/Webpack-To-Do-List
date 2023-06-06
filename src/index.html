@@ -8,7 +8,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <h1>My To Do List</h1>
+    <h1 class="heading">My To Do List</h1>
     <section class="to-do-container" id="to-do-container">
         <div class="headline">
             <p class="title">Today's To Do</p>
@@ -18,14 +18,8 @@
             <input type="text" placeholder="Add to your list...">
             <i class='bx bx-subdirectory-left'></i>
         </div>
-        <ul class="nav-list">
-            <li>
-                <div class="to-do-item">
-                    <input type="checkbox" id="demoCheckbox" name="checkbox" value="1">
-                    <p>The to-do item</p>
-                </div>
-                <i class='bx bx-dots-vertical-rounded to-do-more'> </i>
-            </li>
+        <ul class="nav-list" id="list">
+           
         </ul>
         <div class="to-do-footer">
             <p>Clear all completed</p>
