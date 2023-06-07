@@ -54,6 +54,12 @@ body {
   outline: none;
 }
 
+.edit-description {
+  border: none;
+  width: 80%;
+  outline: none;
+}
+
 .add input::placeholder {
   font-style: italic;
 }
@@ -101,6 +107,10 @@ body {
   cursor: pointer;
 }
 
+#publish {
+  cursor: pointer;
+}
+
 .to-do-footer {
   display: flex;
   justify-content: center;
@@ -112,4 +122,12 @@ body {
 
 .to-do-footer p {
   color: grey;
+}
+
+.show {
+  display: block;
+}
+
+.none {
+  display: none;
 }
