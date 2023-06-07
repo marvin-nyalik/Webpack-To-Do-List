@@ -1,27 +1,35 @@
-import './style.css';
+/* eslint-disable import/no-cycle */
 
-const myList = [
-  {
-    description: 'Take out trash',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Make breakfast',
-    completed: true,
-    index: 2,
-  },
-  {
-    description: 'Code CSS',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Learn React',
-    completed: true,
-    index: 4,
-  },
-];
+import './style.css';
+import { addTask, removeTask } from './addRemove.js';
+// eslint-disable-next-line import/no-mutable-exports
+export let myList = [];
+if (localStorage.getItem('tasks')) {
+  myList = JSON.parse(localStorage.getItem('tasks'));
+}
+export const toggleTask = (index) => {
+  const taskItem = document.getElementById(`listItem${index}`);
+  if (taskItem) {
+    const trash = taskItem.querySelector('.bx-trash');
+    const more = taskItem.querySelector('.bx-dots-vertical-rounded');
+
+    // Toggle the visibility of 'more' and 'trash' icons
+    more.classList.toggle('show');
+    more.classList.toggle('none');
+    trash.classList.toggle('none');
+  }
+};
+
+// Add to the task list
+export const taskDesc = document.getElementById('desc');
+taskDesc.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    addTask();
+  }
+});
+
+const publish = document.getElementById('publish');
+publish.addEventListener('click', addTask);
 
 const handleCheckboxChange = (event) => {
   const checkbox = event.target;
@@ -35,30 +43,85 @@ const handleCheckboxChange = (event) => {
   }
 };
 
-const list = () => {
-  const navList = document.getElementById('list');
-
-  myList.forEach((item) => {
-    const listItem = `
-      <li>
-        <div class="to-do-item">
-          <input class="check" id="check${item.index}" type="checkbox" name="checkbox${item.index}" value="1">
-          <p>${item.description}</p>
-        </div>
-        <i class='bx bx-dots-vertical-rounded to-do-more'> </i>
-      </li>
-    `;
-
-    navList.innerHTML += listItem;
-  });
-
-  const checkboxes = document.getElementsByClassName('check');
-  for (let i = 0; i < checkboxes.length; i += 1) {
-    checkboxes[i].addEventListener('change', handleCheckboxChange);
+const updateListItemDescription = (index, description) => {
+  const item = myList.find((task) => task.index === index);
+  if (item) {
+    item.description = description;
+    toggleTask(index); // Hide the to-do-more icon and show the bx-trash icon
+    toggleTask(index);
   }
+  localStorage.setItem('tasks', JSON.stringify(myList));
 };
 
-list();
+export const navList = document.getElementById('list');
+
+export const list = () => {
+  if (localStorage.getItem('tasks')) {
+    myList = JSON.parse(localStorage.getItem('tasks'));
+  }
+  myList.forEach((item) => {
+    const listItem = document.createElement('li');
+    listItem.classList.add('nav-item');
+    listItem.setAttribute('id', `listItem${item.index}`);
+    listItem.addEventListener('mouseover', () => toggleTask(item.index));
+    listItem.addEventListener('mouseout', () => toggleTask(item.index));
+
+    const taskItem = document.createElement('div');
+    taskItem.classList.add('to-do-item');
+
+    const checkbox = document.createElement('input');
+    checkbox.classList.add('check');
+    checkbox.setAttribute('id', `check${item.index}`);
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.setAttribute('name', `checkbox${item.index}`);
+    checkbox.setAttribute('value', '1');
+    checkbox.addEventListener('change', handleCheckboxChange);
+
+    const description = document.createElement('p');
+    description.textContent = item.description;
+
+    // edit item description
+    description.addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.classList.add('edit-description');
+      input.value = description.textContent;
+
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          const updatedDescription = input.value.trim();
+          if (updatedDescription !== '') {
+            description.textContent = updatedDescription;
+            updateListItemDescription(item.index, updatedDescription);
+            // toggleTask(item.index); // Show only the to-do-more icon
+            toggleTask(item.index); // Hide bx-trash icon and show to-do-more icon
+          }
+          taskItem.removeChild(input);
+          description.style.display = 'block';
+        }
+      });
+
+      description.style.display = 'none';
+      taskItem.appendChild(input);
+      input.focus();
+    });
+
+    const moreIcon = document.createElement('i');
+    moreIcon.classList.add('bx', 'bx-dots-vertical-rounded', 'to-do-more');
+
+    const trashIcon = document.createElement('i');
+    trashIcon.classList.add('bx', 'bx-trash', 'none');
+    trashIcon.addEventListener('click', removeTask);
+
+    taskItem.appendChild(checkbox);
+    taskItem.appendChild(description);
+    listItem.appendChild(taskItem);
+    listItem.appendChild(moreIcon);
+    listItem.appendChild(trashIcon);
+    navList.appendChild(listItem);
+  });
+};
+
+(list());
 
 const clearChecked = document.getElementById('footer');
 
