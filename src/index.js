@@ -25,3 +25,5 @@ clearChecked.addEventListener('click', clearCompleted);
 export {
   toggleTask, taskDesc, list, navList,
 };
+
+list();
