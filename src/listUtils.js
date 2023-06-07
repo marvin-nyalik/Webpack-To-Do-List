@@ -1,4 +1,3 @@
-export let myList = [];
 export const navList = document.getElementById('list');
 
 export const toggleTask = (index) => {
@@ -13,6 +12,9 @@ export const toggleTask = (index) => {
     trash.classList.toggle('none');
   }
 };
+
+// eslint-disable-next-line import/no-mutable-exports
+export let myList = [];
 
 export const removeTask = (event) => {
   const target = event.target.closest('li');
