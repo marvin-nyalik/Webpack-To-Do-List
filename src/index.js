@@ -1,7 +1,6 @@
 import './style.css';
-import { addTask, updateDesc } from './addRemove.js';
+import addTask from './addRemove.js';
 import {
-  myList,
   toggleTask,
   taskDesc,
   list,
@@ -24,5 +23,5 @@ clearChecked.addEventListener('click', clearCompleted);
 
 // Export the necessary functions and variables
 export {
-  myList, toggleTask, taskDesc, list, navList, updateDesc,
+  toggleTask, taskDesc, list, navList,
 };
