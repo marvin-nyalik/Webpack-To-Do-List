@@ -28,12 +28,11 @@ const removeTask = (event) => {
   for (let i = 0; i < myList.length; i += 1) {
     if (myList[i].description === value) {
       myList.splice(i, 1);
+      for (let j = 0; j < myList.length; j += 1) {
+        myList[j].index = j + 1;
+      }
       localStorage.setItem('tasks', JSON.stringify(myList));
     }
-  }
-
-  for (let j = 0; j < myList.length; j += 1) {
-    myList[j].index = j + 1;
   }
 
   // Remove event listeners from the target item
