@@ -60,13 +60,14 @@ const updateListItemDescription = (index, description) => {
 export const handleCheckboxChange = (event) => {
   const checkbox = event.target;
   const listItem = checkbox.closest('li');
+  const key = listItem.querySelector('p').innerHTML;
 
-  if (checkbox.checked) {
-    listItem.style.textDecoration = 'line-through';
-    listItem.style.color = 'lightgray';
-  } else {
-    listItem.style.textDecoration = 'none';
+  for (let i = 0; i < myList.length; i += 1) {
+    if (myList[i].description === key) {
+      myList[i].completed = true;
+    }
   }
+  localStorage.setItem('tasks', JSON.stringify(myList));
 };
 
 export const taskDesc = document.getElementById('desc');
@@ -137,25 +138,10 @@ export const list = () => {
 };
 
 export const clearCompleted = () => {
-  const completed = document.getElementsByClassName('check');
-  const completedItems = [];
-  const completedItemsIds = [];
-
-  // Collect the completed list items
-  for (let i = 0; i < completed.length; i += 1) {
-    const checkbox = completed[i];
-    if (checkbox.checked) {
-      const listItem = checkbox.closest('li');
-      completedItems.push(listItem);
-      completedItemsIds.push(i + 1);
-    }
+  myList = JSON.parse(localStorage.getItem('tasks'));
+  const completed = myList.filter((task) => task.completed !== true);
+  for (let j = 0; j < completed.length; j += 1) {
+    completed[j].index = j + 1;
   }
-  // Remove the completed list items from the DOM
-  completedItems.forEach((item) => {
-    item.remove();
-  });
-
-  completedItemsIds.forEach((item) => {
-    myList.splice(item - 1, 1);
-  });
+  localStorage.setItem('tasks', JSON.stringify(completed));
 };
