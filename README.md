@@ -62,7 +62,7 @@ This project is entirely built with HTML & CSS
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-Visit the deployed secure version of this project [here](https://marvin-nyalik.github.io/Webpack-To-Do-List/dist/)
+Visit the deployed secure version of this project [here](https://marvin-nyalik.github.io/Webpack-To-Do-List/dist/). Note that this project is NOT and WILL NOT be optimized for mobile devices.
 
 
 ## 💻 Getting Started <a name="getting-started"></a>
